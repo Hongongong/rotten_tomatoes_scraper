@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
 
 source = requests.get('https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/').text
 soup = BeautifulSoup(source, 'lxml')
@@ -25,6 +26,7 @@ for m in soup.find_all('table', class_='table')[0].find_all('a', href=True):
     moive_reviews['ratings'].append(r)
     moive_reviews['critics'].append(c)
 
+moive_reviews_df = pd.DataFrame(moive_reviews) # moive_reviews_df is now a dataframe and ready to be outputed as a csv file
 
 def grab_reviews(genre_link):
     source = requests.get(genre_link).text
