@@ -6,7 +6,7 @@ soup = BeautifulSoup(source, 'lxml')
 
 moive_reviews = {'ratings': [], 'critics': []}
 
-for m in soup.find_all('table', class_='table')[0].find_all('a'):
+for m in soup.find_all('table', class_='table')[0].find_all('a', href=True):
     url = 'https://www.rottentomatoes.com/' + m['href']
     sub_source = requests.get(url).text
     sub_soup = BeautifulSoup(sub_source, 'lxml')
@@ -32,7 +32,7 @@ def grab_reviews(genre_link):
 
     moive_reviews = {'ratings': [], 'critics': []}
 
-    for m in soup.find_all('table', class_='table')[0].find_all('a'):
+    for m in soup.find_all('table', class_='table')[0].find_all('a', href=True):
         url = 'https://www.rottentomatoes.com/' + m['href']
         sub_source = requests.get(url).text
         sub_soup = BeautifulSoup(sub_source, 'lxml')
@@ -61,7 +61,7 @@ all_movie_reviews = {'ratings': [], 'critics': []}
 
 source = requests.get('https://www.rottentomatoes.com/top/').text
 soup = BeautifulSoup(source, 'lxml')
-for link in soup.find('ul', class_='genrelist').find_all('a'):
+for link in soup.find('ul', class_='genrelist').find_all('a', href=True):
     genre_link = 'https://www.rottentomatoes.com/' + link['href']
     movie_reviews = grab_reviews(genre_link)
     all_movie_reviews['ratings'] = all_movie_reviews['ratings'] + movie_reviews['ratings']
