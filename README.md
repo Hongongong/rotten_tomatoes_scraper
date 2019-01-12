@@ -1,5 +1,5 @@
 # rotten_tomatoes_scraper
-Scraping movie reviews on rotten tomatoes using beautifulsoup and request
+Scraping movie reviews on rotten tomatoes using beautifulsoup and requests
 
 This scraper is using requests library to make requests to rotten tomatoes website and using beautifulsoup library as a parser to parse the content.
 
